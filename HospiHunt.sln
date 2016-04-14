@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospiHunt.CSharp.Plugins", "HospiHunt.CSharp.Plugins.csproj", "{E381EE40-DEF2-39C9-68E3-F901FCCC08DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospiHunt.CSharp.Editor", "HospiHunt.CSharp.Editor.csproj", "{6B4519F0-DA69-95E6-1BF3-E95397A788BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E381EE40-DEF2-39C9-68E3-F901FCCC08DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E381EE40-DEF2-39C9-68E3-F901FCCC08DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E381EE40-DEF2-39C9-68E3-F901FCCC08DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E381EE40-DEF2-39C9-68E3-F901FCCC08DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4519F0-DA69-95E6-1BF3-E95397A788BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4519F0-DA69-95E6-1BF3-E95397A788BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4519F0-DA69-95E6-1BF3-E95397A788BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4519F0-DA69-95E6-1BF3-E95397A788BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
