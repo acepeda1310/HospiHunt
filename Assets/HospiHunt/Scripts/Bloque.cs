@@ -3,10 +3,12 @@ using System.Collections;
 
 public class Bloque : MonoBehaviour {
 
+    //Private attributes
     GameObject gameObject;
     int orientacion;
     bool girado = false;
 
+    //Public getters and setters
     public void setGameObject(GameObject gameObject)
     {
         this.gameObject = gameObject;
