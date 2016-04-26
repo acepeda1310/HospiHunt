@@ -15,29 +15,19 @@ public class GeneradorEscenario : MonoBehaviour {
 	
 	}
 
-    public GameObject[,] Generar(int lado)
+    public Bloque[,] Generar(int lado)
     {
-        GameObject[,] escenario = new GameObject[lado,lado];
+        Bloque[,] escenario = new Bloque[lado, lado];
         for(int i=0; i<lado; i++)
         {
             for(int j=0; j<lado; j++)
             {
-                escenario[i, j] = tipos[Random.Range(0, tipos.Length-1)];
+                Bloque bloque = new Bloque();
+                bloque.setGameObject(tipos[Random.Range(0, tipos.Length)]);
+                bloque.setOrientacion(Random.Range(0, 4) * 90);
+                escenario[i, j] = bloque;
             }
         }
         return escenario;
-    }
-
-    public int[,] GenerarOrientaciones(int lado)
-    {
-        int[,] orientaciones = new int[lado, lado];
-        for(int i=0; i<lado; i++)
-        {
-            for(int j=0; j<lado; j++)
-            {
-                orientaciones[i, j] = Random.Range(0, 3) * 90;
-            }
-        }
-        return orientaciones;
     }
 }
