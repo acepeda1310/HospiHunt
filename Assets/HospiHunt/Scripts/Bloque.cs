@@ -39,13 +39,27 @@ public class Bloque : MonoBehaviour {
         return this.girado;
     }
 
+    //This method rotates the block
+    //Este método rota el bloque
+    public void girar()
+    {
+        if (!isGirado())
+        {
+            gameObject.transform.Rotate(0, orientacion, 0);
+            setGirado(true);
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
-	
+        girar(); //The block rotates when it's instanciated | El bloque girará cuando haya sido instanciado.
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        //Generates a random rotation and rotates the block if applies
+        //Generamos una rotación aleatoria y la aplicamos si se cumplen las condiciones
+        orientacion = Random.Range(0, 4) * 90;
+        girar();
 	}
 }
