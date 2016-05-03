@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GeneradorEscenario : MonoBehaviour {
 
-    public GameObject[] tipos;
-    public GameObject zombie;
+    public static GameObject[] tipos;
+    public static GameObject zombie;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +18,7 @@ public class GeneradorEscenario : MonoBehaviour {
 
     //It generates a Bloque matrix and return it to the game gestor.
     //Generamos una matriz de bloques para retornarlo al gestor del juego.
-    public Bloque[,] Generar(int lado)
+    public static Bloque[,] Generar(int lado)
     {
         Bloque[,] escenario = new Bloque[lado, lado];
         //Iterate to all escenario items
@@ -38,7 +38,7 @@ public class GeneradorEscenario : MonoBehaviour {
         return escenario;
     }
     
-    public void GenerarZombies(Bloque[,] escenario)
+    public static Bloque[,] GenerarZombies(Bloque[,] escenario)
     {
         for(int i=Random.Range(0,5); i<escenario.Length; i += 5)
         {
@@ -47,5 +47,6 @@ public class GeneradorEscenario : MonoBehaviour {
                 escenario[i, j].setTieneZombie(true);
             }
         }
+        return escenario;
     }
 }
