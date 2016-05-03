@@ -7,6 +7,7 @@ public class Bloque : MonoBehaviour {
     GameObject gameObject;
     int orientacion;
     bool girado = false;
+    bool tieneZombie = false;
 
     //Public getters and setters
     public void setGameObject(GameObject gameObject)
@@ -37,6 +38,16 @@ public class Bloque : MonoBehaviour {
     public bool isGirado()
     {
         return this.girado;
+    }
+
+    public void setTieneZombie(bool tieneZombie)
+    {
+        this.tieneZombie = tieneZombie;
+    }
+
+    public bool isTieneZombie()
+    {
+        return tieneZombie;
     }
 
     //This method rotates the block

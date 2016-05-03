@@ -4,6 +4,7 @@ using System.Collections;
 public class GeneradorEscenario : MonoBehaviour {
 
     public GameObject[] tipos;
+    public GameObject zombie;
 
 	// Use this for initialization
 	void Start () {
@@ -35,5 +36,16 @@ public class GeneradorEscenario : MonoBehaviour {
             }
         }
         return escenario;
+    }
+    
+    public void GenerarZombies(Bloque[,] escenario)
+    {
+        for(int i=Random.Range(0,5); i<escenario.Length; i += 5)
+        {
+            for(int j=Random.Range(0,5); j<escenario.Length; j += 5)
+            {
+                escenario[i, j].setTieneZombie(true);
+            }
+        }
     }
 }
