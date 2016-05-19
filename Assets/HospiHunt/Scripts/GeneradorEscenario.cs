@@ -49,4 +49,18 @@ public class GeneradorEscenario : MonoBehaviour {
         }
         return escenario;
     }
+
+    public static Bloque[,] GenerarBaterias(Bloque[,] escenario)
+    {
+        for(int i=Random.Range(0,10); i<escenario.Length; i += Random.Range(5, 10))
+        {
+            for(int j=Random.Range(0,10); j<escenario.Length; j += Random.Range(5, 10))
+            {
+                escenario[i, j].setTieneBateria(true);
+                i += Random.Range(0, 4) - 2;
+                if (i < 0) i = 0;
+            }
+        }
+        return escenario;
+    }
 }

@@ -8,6 +8,7 @@ public class Bloque : MonoBehaviour {
     int orientacion;
     bool girado = false;
     bool tieneZombie = false;
+    bool tieneBateria = false;
 
     //Public getters and setters
     public void setGameObject(GameObject gameObject)
@@ -47,30 +48,40 @@ public class Bloque : MonoBehaviour {
 
     public bool isTieneZombie()
     {
-        return tieneZombie;
+        return this.tieneZombie;
+    }
+
+    public void setTieneBateria(bool tieneBateria)
+    {
+        this.tieneBateria = tieneBateria;
+    }
+
+    public bool isTieneBateria()
+    {
+        return this.tieneBateria
     }
 
     //This method rotates the block
     //Este método rota el bloque
     public void girar()
     {
-        if (!isGirado())
+        if (!this.isGirado())
         {
             gameObject.transform.Rotate(0, orientacion, 0);
-            setGirado(true);
+            this.setGirado(true);
         }
     }
 
 	// Use this for initialization
 	void Start () {
-        girar(); //The block rotates when it's instanciated | El bloque girará cuando haya sido instanciado.
+        this.girar(); //The block rotates when it's instanciated | El bloque girará cuando haya sido instanciado.
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //Generates a random rotation and rotates the block if applies
         //Generamos una rotación aleatoria y la aplicamos si se cumplen las condiciones
-        orientacion = Random.Range(0, 4) * 90;
-        girar();
+        this.orientacion = Random.Range(0, 4) * 90;
+        this.girar();
 	}
 }
