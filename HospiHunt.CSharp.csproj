@@ -72,6 +72,7 @@
     <Compile Include="Assets\HospiHunt\Scripts\Bloque.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\GeneradorEscenario.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\GestorJuego.cs" />
+    <Compile Include="Assets\HospiHunt\Scripts\Lampara.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
