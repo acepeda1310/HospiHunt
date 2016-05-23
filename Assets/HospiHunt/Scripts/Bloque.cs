@@ -58,7 +58,7 @@ public class Bloque : MonoBehaviour {
 
     public bool isTieneBateria()
     {
-        return this.tieneBateria
+        return this.tieneBateria;
     }
 
     //This method rotates the block

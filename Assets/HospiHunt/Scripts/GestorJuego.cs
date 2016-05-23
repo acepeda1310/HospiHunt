@@ -67,7 +67,7 @@ public class GestorJuego : MonoBehaviour {
             {
                 if (this.escenario[i, j].isTieneBateria())
                 {
-                    Instantiate(this.baterias[colocados], new Vector3(8 * i - posInicial, 8 - j * posInicial, 0), Quaternion.identity);
+                    Instantiate(this.baterias[colocadas], new Vector3(8 * i - posInicial, 8 - j * posInicial, 0), Quaternion.identity);
                     colocadas++;
                 }
             }
