@@ -8,6 +8,8 @@ public class GestorJuego : MonoBehaviour {
     GameObject[] zombies;
     GameObject[] items;
     GameObject[] baterias;
+	
+	int longitudBloque=20;
 
 	// Use this for initialization
 	void Start () {
@@ -25,27 +27,27 @@ public class GestorJuego : MonoBehaviour {
 
     private void InstanciarEscenario()
     {
-        int posInicial = 8*(this.escenario.Length / 2)-4;
+        int posInicial = longitudBloque*(this.escenario.Length / 2)-(longitudBloque / 2);
         for(int i=0;  i<this.escenario.Length; i++)
         {
             for(int j=0; j<this.escenario.Length; j++)
             {
-                Instantiate(this.escenario[i, j].getGameObject(), new Vector3(8 * i - posInicial, 8 * j - posInicial, 0), Quaternion.identity);
+                Instantiate(this.escenario[i, j].getGameObject(), new Vector3(longitudBloque * i - posInicial, longitudBloque * j - posInicial, 0), Quaternion.identity);
             }
         }
     }
 
     private void InstanciarZombies()
     {
-        int posInicial = 8 * (this.escenario.Length / 2) - 4;
+        int posInicial = longitudBloque * (this.escenario.Length / 2) - (longitudBloque / 2);
         int colocados = 0;
         for(int i=0; i<this.escenario.Length; i++)
         {
             for(int j=0; j<this.escenario.Length; j++)
             {
-                if (this.escenario[i, j].isTieneZombie())
+                if (this.escenario[i, j].isTieneZombie() && ! (i > (this.escenario.Length / 2) - 2 && i < (this.escenario.Length / 2) + 2 && j > (this.escenario.Length / 2) - 2 && j < (this.escenario.Length / 2) + 2))
                 {
-                    Instantiate(this.zombies[colocados], new Vector3(8 * i - posInicial, 8 - j * posInicial, 0), Quaternion.identity);
+                    Instantiate(this.zombies[colocados], new Vector3(longitudBloque * i - posInicial, longitudBloque - j * posInicial, 0), Quaternion.identity);
                     colocados++;
                 }
             }
@@ -59,7 +61,7 @@ public class GestorJuego : MonoBehaviour {
 
     private void InstanciarBaterias()
     {
-        int posInicial = 8 * (this.escenario.Length / 2) - 4;
+        int posInicial = longitudBloque * (this.escenario.Length / 2) - (longitudBloque / 2);
         int colocadas = 0;
         for (int i = 0; i < this.escenario.Length; i++)
         {
@@ -67,7 +69,7 @@ public class GestorJuego : MonoBehaviour {
             {
                 if (this.escenario[i, j].isTieneBateria())
                 {
-                    Instantiate(this.baterias[colocadas], new Vector3(8 * i - posInicial, 8 - j * posInicial, 0), Quaternion.identity);
+                    Instantiate(this.baterias[colocadas], new Vector3(longitudBloque * i - posInicial, longitudBloque - j * posInicial, 0), Quaternion.identity);
                     colocadas++;
                 }
             }
@@ -77,7 +79,8 @@ public class GestorJuego : MonoBehaviour {
     //Todavía por hacer
     private void InstanciarItem()
     {
-
+		//Será similar a los instanciar baterías y zombies, pero ahora mismo no recuerdo cómo llamar a la posición del transform del jugador, por lo que he de hacerlo más tarde.
+		//TODO
     }
 
 }
