@@ -4,7 +4,7 @@ using System.Collections;
 
 public class BotonesMenuPrincipal : MonoBehaviour {
 
-	public boolean juego=true;
+	public bool juego=true;
 
     void OnMouseDown()
     {
@@ -17,12 +17,12 @@ public class BotonesMenuPrincipal : MonoBehaviour {
     {
 		if(juego)
 		{
-			SceneManager.LoadScene(nombreEscenaParaCargar);
+			SceneManager.LoadScene("Juego");
 		} 
 		else
 		{
-			#if UNITY_EDITOR 
-			EditorApplication.isPlaying = false;
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
 			#else 
 			Application.Quit();
 			#endif

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/HospiHunt/Escenas/MenuPrincipal.unity
+- path: Assets/HospiHunt/Escenas/Juego.unity
   isLoaded: 1
   isActive: 1

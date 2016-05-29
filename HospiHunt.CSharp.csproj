@@ -70,8 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\HospiHunt\Scripts\Bloque.cs" />
+    <Compile Include="Assets\HospiHunt\Scripts\BotonesMenuPrincipal.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\GeneradorEscenario.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\GestorJuego.cs" />
+    <Compile Include="Assets\HospiHunt\Scripts\GestorMenu.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\Lampara.cs" />
   </ItemGroup>
   <ItemGroup>
