@@ -2,13 +2,19 @@
 using System.Collections;
 
 public class GestorJuego : MonoBehaviour {
-
+    /*
     Bloque[,] escenario;
     GameObject personaje;
     GameObject[] zombies;
     GameObject[] items;
     GameObject[] baterias;
-	
+	*/
+
+    public GameObject zombie, item, bateria;
+
+    Bloque[,] escenario;
+    GameObject personaje;
+
 	int longitudBloque=20;
 
 	// Use this for initialization
@@ -27,28 +33,26 @@ public class GestorJuego : MonoBehaviour {
 
     private void InstanciarEscenario()
     {
-        int posInicial = longitudBloque*(this.escenario.Length / 2)-(longitudBloque / 2);
+        int posInicial = this.longitudBloque*(this.escenario.Length / 2)-(this.longitudBloque / 2);
         for(int i=0;  i<this.escenario.Length; i++)
         {
             for(int j=0; j<this.escenario.Length; j++)
             {
-                Instantiate(this.escenario[i, j].getGameObject(), new Vector3(longitudBloque * i - posInicial, longitudBloque * j - posInicial, 0), Quaternion.identity);
+                Instantiate(this.escenario[i, j].getGameObject(), new Vector3(this.longitudBloque * i - posInicial, this.longitudBloque * j - posInicial, 0), Quaternion.identity);
             }
         }
     }
 
     private void InstanciarZombies()
     {
-        int posInicial = longitudBloque * (this.escenario.Length / 2) - (longitudBloque / 2);
-        int colocados = 0;
+        int posInicial = this.longitudBloque * (this.escenario.Length / 2) - (this.longitudBloque / 2);
         for(int i=0; i<this.escenario.Length; i++)
         {
             for(int j=0; j<this.escenario.Length; j++)
             {
                 if (this.escenario[i, j].isTieneZombie() && ! (i > (this.escenario.Length / 2) - 2 && i < (this.escenario.Length / 2) + 2 && j > (this.escenario.Length / 2) - 2 && j < (this.escenario.Length / 2) + 2))
                 {
-                    Instantiate(this.zombies[colocados], new Vector3(longitudBloque * i - posInicial, longitudBloque - j * posInicial, 0), Quaternion.identity);
-                    colocados++;
+                    Instantiate(this.zombie, new Vector3(this.longitudBloque * i - posInicial, this.longitudBloque * j - posInicial, 0), Quaternion.identity);
                 }
             }
         }
@@ -61,16 +65,14 @@ public class GestorJuego : MonoBehaviour {
 
     private void InstanciarBaterias()
     {
-        int posInicial = longitudBloque * (this.escenario.Length / 2) - (longitudBloque / 2);
-        int colocadas = 0;
+        int posInicial = this.longitudBloque * (this.escenario.Length / 2) - (this.longitudBloque / 2);
         for (int i = 0; i < this.escenario.Length; i++)
         {
             for (int j = 0; j < this.escenario.Length; j++)
             {
                 if (this.escenario[i, j].isTieneBateria())
                 {
-                    Instantiate(this.baterias[colocadas], new Vector3(longitudBloque * i - posInicial, longitudBloque - j * posInicial, 0), Quaternion.identity);
-                    colocadas++;
+                    Instantiate(this.bateria, new Vector3(this.longitudBloque * i - posInicial, this.longitudBloque - j * posInicial, 0), Quaternion.identity);
                 }
             }
         }
@@ -79,8 +81,19 @@ public class GestorJuego : MonoBehaviour {
     //Todavía por hacer
     private void InstanciarItem()
     {
-		//Será similar a los instanciar baterías y zombies, pero ahora mismo no recuerdo cómo llamar a la posición del transform del jugador, por lo que he de hacerlo más tarde.
-		//TODO
+        int posX = Random.Range(0, this.escenario.Length);
+        int posY = Random.Range(0, this.escenario.Length);
+        int posXJugador = ((int)this.personaje.transform.position.x) / this.longitudBloque + (this.escenario.Length / 2) + (longitudBloque / 2);
+        int posYJugador = ((int)this.personaje.transform.position.z) / this.longitudBloque + (this.escenario.Length / 2) + (longitudBloque / 2);
+        if (!(posXJugador + 2 > posX && posXJugador - 2 < posX && posYJugador + 2 > posY && posYJugador - 2 < posY))
+        {
+            int posInicial = this.longitudBloque * (this.escenario.Length / 2) - (this.longitudBloque / 2);
+            Instantiate(this.item, new Vector3(this.longitudBloque * posX - posInicial, this.longitudBloque * posY - posInicial, 1), Quaternion.identity);
+        }
+        else
+        {
+            InstanciarItem();
+        }
     }
 
 }
