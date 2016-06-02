@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GeneradorEscenario : MonoBehaviour {
 
-    public static GameObject[] tipos;
-    public static GameObject zombie;
+    public GameObject[] tipos;
+    public GameObject zombie;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +18,7 @@ public class GeneradorEscenario : MonoBehaviour {
 
     //It generates a Bloque matrix and return it to the game gestor.
     //Generamos una matriz de bloques para retornarlo al gestor del juego.
-    public static Bloque[,] Generar(int lado)
+    public Bloque[,] Generar(int lado)
     {
         Bloque[,] escenario = new Bloque[lado, lado];
         //Iterate to all escenario items
@@ -38,11 +38,11 @@ public class GeneradorEscenario : MonoBehaviour {
         return escenario;
     }
     
-    public static Bloque[,] GenerarZombies(Bloque[,] escenario)
+    public Bloque[,] GenerarZombies(Bloque[,] escenario)
     {
-        for(int i=Random.Range(0,5); i<escenario.Length; i += 5)
+        for(int i=Random.Range(0,5); i< System.Math.Sqrt(escenario.Length); i += 5)
         {
-            for(int j=Random.Range(0,5); j<escenario.Length; j += 5)
+            for(int j=Random.Range(0,5); j< System.Math.Sqrt(escenario.Length); j += 5)
             {
                 escenario[i, j].setTieneZombie(true);
             }
@@ -50,11 +50,11 @@ public class GeneradorEscenario : MonoBehaviour {
         return escenario;
     }
 
-    public static Bloque[,] GenerarBaterias(Bloque[,] escenario)
+    public Bloque[,] GenerarBaterias(Bloque[,] escenario)
     {
-        for(int i=Random.Range(0,10); i<escenario.Length; i += Random.Range(5, 10))
+        for(int i=Random.Range(0,10); i< System.Math.Sqrt(escenario.Length); i += Random.Range(5, 10))
         {
-            for(int j=Random.Range(0,10); j<escenario.Length; j += Random.Range(5, 10))
+            for(int j=Random.Range(0,10); j< System.Math.Sqrt(escenario.Length); j += Random.Range(5, 10))
             {
                 escenario[i, j].setTieneBateria(true);
                 i += Random.Range(0, 4) - 2;

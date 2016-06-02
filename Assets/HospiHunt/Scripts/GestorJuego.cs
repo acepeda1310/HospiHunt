@@ -10,49 +10,54 @@ public class GestorJuego : MonoBehaviour {
     GameObject[] baterias;
 	*/
 
-    public GameObject zombie, item, bateria;
+    public GameObject zombie, item, bateria, personaje;
 
+    public int lado;
+
+	public GeneradorEscenario generadorEscenario;
+	
     Bloque[,] escenario;
-    GameObject personaje;
 
 	int longitudBloque=20;
 
 	// Use this for initialization
 	void Start () {
-        this.escenario = GeneradorEscenario.GenerarBaterias(GeneradorEscenario.GenerarZombies(GeneradorEscenario.Generar(5)));
+        this.escenario = this.generadorEscenario.GenerarBaterias(this.generadorEscenario.GenerarZombies(this.generadorEscenario.Generar(this.lado)));
         this.InstanciarEscenario();
         this.InstanciarZombies();
         this.InstanciarJugador();
         this.InstanciarBaterias();
-	}
+        this.Invoke("InstanciarItem", 90);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        this.Invoke("InstanciarItem", 90);
+        
 	}
 
     private void InstanciarEscenario()
     {
-        int posInicial = this.longitudBloque*(this.escenario.Length / 2)-(this.longitudBloque / 2);
-        for(int i=0;  i<this.escenario.Length; i++)
+        Debug.Log(this.escenario.Length);
+        int posInicial = this.longitudBloque*(int)(System.Math.Sqrt(this.escenario.Length) / 2)-(this.longitudBloque / 2);
+        for(int i=0;  i< System.Math.Sqrt(this.escenario.Length); i++)
         {
-            for(int j=0; j<this.escenario.Length; j++)
+            for(int j=0; j< System.Math.Sqrt(this.escenario.Length); j++)
             {
-                Instantiate(this.escenario[i, j].getGameObject(), new Vector3(this.longitudBloque * i - posInicial, this.longitudBloque * j - posInicial, 0), Quaternion.identity);
+                Instantiate(this.escenario[i, j].getGameObject(), new Vector3(this.longitudBloque * i - posInicial, 0f, this.longitudBloque * j - posInicial), Quaternion.identity);
             }
         }
     }
 
     private void InstanciarZombies()
     {
-        int posInicial = this.longitudBloque * (this.escenario.Length / 2) - (this.longitudBloque / 2);
-        for(int i=0; i<this.escenario.Length; i++)
+        int posInicial = this.longitudBloque * (int)(System.Math.Sqrt(this.escenario.Length) / 2) - (this.longitudBloque / 2);
+        for(int i=0; i< System.Math.Sqrt(this.escenario.Length); i++)
         {
-            for(int j=0; j<this.escenario.Length; j++)
+            for(int j=0; j< System.Math.Sqrt(this.escenario.Length); j++)
             {
-                if (this.escenario[i, j].isTieneZombie() && ! (i > (this.escenario.Length / 2) - 2 && i < (this.escenario.Length / 2) + 2 && j > (this.escenario.Length / 2) - 2 && j < (this.escenario.Length / 2) + 2))
+                if (this.escenario[i, j].isTieneZombie() && ! (i > (System.Math.Sqrt(this.escenario.Length) / 2) - 2 && i < (System.Math.Sqrt(this.escenario.Length) / 2) + 2 && j > (System.Math.Sqrt(this.escenario.Length) / 2) - 2 && j < (System.Math.Sqrt(this.escenario.Length) / 2) + 2))
                 {
-                    Instantiate(this.zombie, new Vector3(this.longitudBloque * i - posInicial, this.longitudBloque * j - posInicial, 0), Quaternion.identity);
+                    Instantiate(this.zombie, new Vector3(this.longitudBloque * i - posInicial, 0.12f, this.longitudBloque * j - posInicial), Quaternion.identity);
                 }
             }
         }
@@ -60,19 +65,19 @@ public class GestorJuego : MonoBehaviour {
 
     private void InstanciarJugador()
     {
-        this.personaje.transform.position = new Vector3(0,0,0);
+        this.personaje.transform.position = new Vector3(5,2,5);
     }
 
     private void InstanciarBaterias()
     {
-        int posInicial = this.longitudBloque * (this.escenario.Length / 2) - (this.longitudBloque / 2);
-        for (int i = 0; i < this.escenario.Length; i++)
+        int posInicial = this.longitudBloque * (int)(System.Math.Sqrt(this.escenario.Length) / 2) - (this.longitudBloque / 2);
+        for (int i = 0; i < System.Math.Sqrt(this.escenario.Length); i++)
         {
-            for (int j = 0; j < this.escenario.Length; j++)
+            for (int j = 0; j < System.Math.Sqrt(this.escenario.Length); j++)
             {
                 if (this.escenario[i, j].isTieneBateria())
                 {
-                    Instantiate(this.bateria, new Vector3(this.longitudBloque * i - posInicial, this.longitudBloque - j * posInicial, 0), Quaternion.identity);
+                    Instantiate(this.bateria, new Vector3(this.longitudBloque * i - posInicial, 1, this.longitudBloque - j * posInicial), Quaternion.identity);
                 }
             }
         }
@@ -88,12 +93,13 @@ public class GestorJuego : MonoBehaviour {
         if (!(posXJugador + 2 > posX && posXJugador - 2 < posX && posYJugador + 2 > posY && posYJugador - 2 < posY))
         {
             int posInicial = this.longitudBloque * (this.escenario.Length / 2) - (this.longitudBloque / 2);
-            Instantiate(this.item, new Vector3(this.longitudBloque * posX - posInicial, this.longitudBloque * posY - posInicial, 1), Quaternion.identity);
+            Instantiate(this.item, new Vector3(this.longitudBloque * posX - posInicial, 1, this.longitudBloque * posY - posInicial), Quaternion.identity);
         }
         else
         {
             InstanciarItem();
         }
+        this.Invoke("InstanciarItem", 90);
     }
 
 }

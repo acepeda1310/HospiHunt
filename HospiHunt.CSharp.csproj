@@ -61,9 +61,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-UnityScript-firstpass">
-      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="HospiHunt.CSharp.Plugins.csproj">
@@ -74,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\HospiHunt\Scripts\Bloque.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\BotonesMenuPrincipal.cs" />
+    <Compile Include="Assets\HospiHunt\Scripts\Enemigo.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\GeneradorEscenario.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\GestorJuego.cs" />
     <Compile Include="Assets\HospiHunt\Scripts\GestorMenu.cs" />
