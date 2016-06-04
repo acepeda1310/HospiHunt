@@ -40,9 +40,9 @@ public class GeneradorEscenario : MonoBehaviour {
     
     public Bloque[,] GenerarZombies(Bloque[,] escenario)
     {
-        for(int i=Random.Range(0,5); i< System.Math.Sqrt(escenario.Length); i += 5)
+        for(int i=Random.Range(0,2); i< System.Math.Sqrt(escenario.Length); i += 2)
         {
-            for(int j=Random.Range(0,5); j< System.Math.Sqrt(escenario.Length); j += 5)
+            for(int j=Random.Range(0,2); j< System.Math.Sqrt(escenario.Length); j += 2)
             {
                 escenario[i, j].setTieneZombie(true);
             }

@@ -20,9 +20,11 @@ public class Enemigo : MonoBehaviour
             float z = this.transform.position.z;
             float distanciaX = this.player.position.x - x;
             float distanciaZ = this.player.position.z - z;
-            float distanciaTotal = (float)System.Math.Sqrt(System.Math.Pow((double)distanciaX, 2) + System.Math.Pow((double)distanciaZ, 2));
+            float distanciaTotal = ((this.player.position - this.transform.position).magnitude);
             Vector3 vector = new Vector3((distanciaX/distanciaTotal)/100, 0, (distanciaZ/distanciaTotal)/100);
             this.transform.Translate(vector * this.velocidad);
+            this.transform.position = (new Vector3(this.transform.position.x, 0.12f, this.transform.position.z));
+            this.transform.LookAt(player);
         }
     }
 

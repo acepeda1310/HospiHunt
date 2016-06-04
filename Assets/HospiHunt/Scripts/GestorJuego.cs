@@ -10,7 +10,7 @@ public class GestorJuego : MonoBehaviour {
     GameObject[] baterias;
 	*/
 
-    public GameObject zombie, item, bateria, personaje;
+    public GameObject zombie, item, bateria, personaje, pared, paredRotada;
 
     public int lado;
 
@@ -27,20 +27,16 @@ public class GestorJuego : MonoBehaviour {
         this.InstanciarZombies();
         this.InstanciarJugador();
         this.InstanciarBaterias();
+        GameObject[] paredes = GameObject.FindGameObjectsWithTag("pared");
+        int destruida = Random.Range(0, paredes.Length);
+        GameObject.Destroy(paredes[destruida]);
         this.Invoke("InstanciarItem", 90);
+        this.Invoke("Girar", 5);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        foreach(Bloque bloque in this.escenario)
-        {
-            var distancia = this.personaje.transform.position - bloque.getGameObject().transform.position;
-            float distanciaReal = distancia.magnitude;
-            if (distanciaReal > 20)
-            {
-                bloque.setGirado(false);
-            }
-        }
+        
 	}
 
     private void InstanciarEscenario()
@@ -63,7 +59,7 @@ public class GestorJuego : MonoBehaviour {
         {
             for(int j=0; j< System.Math.Sqrt(this.escenario.Length); j++)
             {
-                if (this.escenario[i, j].isTieneZombie() && ! (i > (System.Math.Sqrt(this.escenario.Length) / 2) - 2 && i < (System.Math.Sqrt(this.escenario.Length) / 2) + 2 && j > (System.Math.Sqrt(this.escenario.Length) / 2) - 2 && j < (System.Math.Sqrt(this.escenario.Length) / 2) + 2))
+                if (this.escenario[i, j].isTieneZombie() && ! (i > (System.Math.Sqrt(this.escenario.Length) / 2) - 1 && i < (System.Math.Sqrt(this.escenario.Length) / 2) + 1 && j > (System.Math.Sqrt(this.escenario.Length) / 2) - 1 && j < (System.Math.Sqrt(this.escenario.Length) / 2) + 1))
                 {
                     Instantiate(this.zombie, new Vector3(this.longitudBloque * i - posInicial, 0.12f, this.longitudBloque * j - posInicial), Quaternion.identity);
                 }
@@ -108,6 +104,17 @@ public class GestorJuego : MonoBehaviour {
             InstanciarItem();
         }
         this.Invoke("InstanciarItem", 90);
+    }
+
+    private void Girar()
+    {
+        GameObject[] gameobjects = GameObject.FindGameObjectsWithTag("bloque");
+        foreach (GameObject bloque in gameobjects)
+        {
+            if((GameObject.FindGameObjectWithTag("Player").transform.position-bloque.transform.position).magnitude>10)
+                bloque.transform.Rotate(new Vector3(0, Random.Range(0, 4) * 90, 0));
+        }
+        this.Invoke("Girar", 5);
     }
 
 }
