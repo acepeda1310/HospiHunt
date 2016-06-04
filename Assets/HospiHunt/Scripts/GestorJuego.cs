@@ -32,7 +32,15 @@ public class GestorJuego : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        foreach(Bloque bloque in this.escenario)
+        {
+            var distancia = this.personaje.transform.position - bloque.getGameObject().transform.position;
+            float distanciaReal = distancia.magnitude;
+            if (distanciaReal > 20)
+            {
+                bloque.setGirado(false);
+            }
+        }
 	}
 
     private void InstanciarEscenario()
@@ -65,7 +73,7 @@ public class GestorJuego : MonoBehaviour {
 
     private void InstanciarJugador()
     {
-        this.personaje.transform.position = new Vector3(5,2,5);
+        Instantiate(this.personaje, new Vector3(5, 2, 5), Quaternion.identity);
     }
 
     private void InstanciarBaterias()
