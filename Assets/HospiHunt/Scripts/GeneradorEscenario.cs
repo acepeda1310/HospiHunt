@@ -30,7 +30,7 @@ public class GeneradorEscenario : MonoBehaviour {
                 //Generate the Bloque and its properties
                 //Generamos el bloque y sus propiedades
                 Bloque bloque = new Bloque();
-                bloque.setGameObject(tipos[Random.Range(0, tipos.Length)]);
+                bloque.setGameObject(this.tipos[Random.Range(0, this.tipos.Length)]);
                 bloque.setOrientacion(Random.Range(0, 4) * 90);
                 escenario[i, j] = bloque;
             }
@@ -52,12 +52,12 @@ public class GeneradorEscenario : MonoBehaviour {
 
     public Bloque[,] GenerarBaterias(Bloque[,] escenario)
     {
-        for(int i=Random.Range(0,10); i< System.Math.Sqrt(escenario.Length); i += Random.Range(5, 10))
+        for(int i=Random.Range(0,3); i< System.Math.Sqrt(escenario.Length); i += Random.Range(2, 4))
         {
-            for(int j=Random.Range(0,10); j< System.Math.Sqrt(escenario.Length); j += Random.Range(5, 10))
+            for(int j=Random.Range(0,3); j< System.Math.Sqrt(escenario.Length); j += Random.Range(2, 4))
             {
                 escenario[i, j].setTieneBateria(true);
-                i += Random.Range(0, 4) - 2;
+                i += Random.Range(0, 3) - 1;
                 if (i < 0) i = 0;
             }
         }

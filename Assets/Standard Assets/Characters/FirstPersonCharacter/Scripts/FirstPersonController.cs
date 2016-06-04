@@ -83,6 +83,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
 
+        public void setWalkSpeed(float walkSpeed)
+        {
+            this.m_WalkSpeed = walkSpeed;
+        }
+
+        public float getWalkSpeed()
+        {
+            return m_WalkSpeed;
+        }
+
 
         private void PlayLandingSound()
         {
@@ -238,7 +248,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+        /*private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             Rigidbody body = hit.collider.attachedRigidbody;
             //dont move the rigidbody if the character is on top of it
@@ -252,6 +262,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
-        }
+        }*/
     }
 }
