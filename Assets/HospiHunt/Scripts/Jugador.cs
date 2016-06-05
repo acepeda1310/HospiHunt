@@ -28,7 +28,7 @@ public class Jugador : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision colision)
+    void OnTriggerEnter(Collider colision)
     {
         Debug.Log(colision.gameObject.tag);
         if (colision.gameObject.tag == "Finish")
